@@ -58,7 +58,7 @@ export class App extends React.Component {
       positions.forEach((p,i)=>{
 	if (texts[i]) {
 	  ctx.font = ((window.innerWidth / 30) * p[2] * 1.05) + "px Arial";
-	  if (texts[i].length > 2) {
+	  if (texts[i].length > 4) {
 	    ctx.font = ((window.innerWidth / 30) * p[2] * 0.8) + "px Arial";
 	  }
 	  ctx.fillText(texts[i].split('').slice(0,7).join(''), p[0]/320*window.innerWidth, p[1]/320*window.innerWidth);
