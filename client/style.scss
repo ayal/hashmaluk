@@ -1,0 +1,18 @@
+body {
+    background:pink;
+}
+
+.app {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    input {
+	font-size:16px;
+	width:100%;
+	text-align:right;
+	direction:rtl;
+    }
+    canvas {
+	width:100%;
+    }
+}
