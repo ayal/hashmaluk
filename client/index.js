@@ -48,13 +48,16 @@ export class App extends React.Component {
     ctx.translate(20/320*window.innerWidth,-20/320*window.innerWidth)
     ctx.rotate(0.1);
     
-    var positions = [[255,130,1.4], [160+17, 150,1.2], [97+10, 135, 1], [40, 115,0.8]];
+    var positions = [[255,130,1.25], [160+17, 150,1.1], [97+10, 135, 0.9], [40, 115,0.8]];
     var query = this.props.location.query || '{}';
     if (query && query.v) {
       var texts = query.v.split(' ');
       positions.forEach((p,i)=>{
 	if (texts[i]) {
 	  ctx.font = ((window.innerWidth / 30) * p[2]) + "px Arial";
+	  if (texts[i].length > 2) {
+	    ctx.font = ((window.innerWidth / 30) * p[2]) + "px Arial";
+	  }
 	  ctx.fillText(texts[i].split('').slice(0,7).join(''), p[0]/320*window.innerWidth, p[1]/320*window.innerWidth);
 	}
       });
@@ -68,10 +71,9 @@ export class App extends React.Component {
 	this.setState({data});
 	setTimeout(()=>{
 	  this.setState({rendering:false});
-	},700)
+	},100)
       }
-      
-    },700);
+    },100);
   }
 
   change(e) {
@@ -86,9 +88,9 @@ export class App extends React.Component {
     return (
       <div className="app">
 	<input onChange={(e)=>this.change(e)} value={query.v} />
-	<img src={this.state.data} style={{display:!this.state.rendering?'block':'none'}} className="theimg" />
-	<canvas ref="canvas" style={{display:this.state.rendering?'block':'none'}} />
-	<a download="hashmaluk.png" className="download" href={this.state.data}>IMAGE</a>
+	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
+	<canvas ref="canvas" />
+	<a download="hashmaluk.png" className="download" href={this.state.data}>DOWNLOAD</a>
       </div>
     );
   }
