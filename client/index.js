@@ -83,6 +83,7 @@ ReactDOM.render(
   (<Router history={browserHistory}>
 	<Route>
           <Route path="/" component={App} />
+	  <Route path="/hashmaluk" component={App} />
 	</Route>
   </Router>),
   document.getElementById("app"));
