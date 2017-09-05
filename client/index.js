@@ -33,7 +33,7 @@ export class App extends React.Component {
     ctx.textAlign = "center";
     ctx.drawImage(this.image, 0, 0, window.innerWidth, this.image.naturalHeight * (window.innerWidth / this.image.naturalWidth));
 
-    ctx.font = (window.innerWidth / 28) + "px Arial";
+    ctx.font = (window.innerWidth / 30) + "px Arial";
     ctx.translate(20/320*window.innerWidth,-20/320*window.innerWidth)
     ctx.rotate(0.1);
     
