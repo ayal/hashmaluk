@@ -81,8 +81,9 @@ export class App extends React.Component {
     this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
   }
 
-  download() {
+  download(e) {
     if (navigator.userAgent.toLowerCase().indexOf('MESSENGER;FBAV') !== -1) {
+      e.preventDefault();
       alert('No download here :( open link in browser');
     }
   }
