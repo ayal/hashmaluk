@@ -30,6 +30,9 @@ export class App extends React.Component {
     this.image.src = config.imagePath;
     
     this.updateCanvas();
+    $(window).resize(()=>{
+      this.updateCanvas();
+    })
   }
   componentDidUpdate() {
     this.updateCanvas();
