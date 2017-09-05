@@ -4,6 +4,7 @@ import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router'
 
 var style = require('./style.scss');
 
+
 var config = {
   imagePath: "public/hash.png", 
 };
@@ -77,6 +78,10 @@ export class App extends React.Component {
     this.setState({rendering:true});
     this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
   }
+
+  getImage() {
+    window.open(this.state.data);
+  }
   
   render() {
     console.log('rendering app', this);
@@ -87,6 +92,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	<img src={this.state.data} style={{display:!this.state.rendering?'block':'none'}} className="theimg" />
 	<canvas ref="canvas" style={{display:this.state.rendering?'block':'none'}} />
+	<div className="download" onClick={()=>this.getImage()}>DOWNLOAD</div>
       </div>
     );
   }
