@@ -8,9 +8,11 @@ var config = {
   imagePath: "public/hash.png", 
 };
 
+/*
 var config = {
   imagePath: "hash.png"
 }
+*/
 
 export class App extends React.Component {
   constructor(props){
