@@ -90,7 +90,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" />
-	<a download="hashmaluk.png" className="download" href={this.state.data}>DOWNLOAD</a>
+	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={()=>{alert(navigator.userAgent)}}>DOWNLOAD</a>
       </div>
     );
   }
