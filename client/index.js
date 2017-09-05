@@ -79,6 +79,8 @@ App.contextTypes = {
   router: React.PropTypes.func.isRequired
 };
 
+console.log('nice');
+
 ReactDOM.render(
   (<Router history={browserHistory}>
 	<Route>
