@@ -8,12 +8,16 @@ body {
     align-items:center;
     input {
 	font-size:16px;
-	width:100%;
-	text-align:right;
+	width:90%;
 	direction:rtl;
+	max-width:400px;
+	margin-bottom:6px;
+	padding:10px 0px;
+	text-align:center;
     }
     canvas {
 	width:100%;
+	max-width:500px;
     }
     .download {
 	cursor:pointer;
