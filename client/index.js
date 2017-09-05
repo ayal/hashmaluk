@@ -48,15 +48,15 @@ export class App extends React.Component {
     ctx.translate(20/320*window.innerWidth,-20/320*window.innerWidth)
     ctx.rotate(0.1);
     
-    var positions = [[255,130,1.25], [160+17, 150,1.1], [97+10, 135, 0.9], [40, 115,0.8]];
+    var positions = [[255,130,1.25], [160+14, 150,1.1], [97+10, 135, 0.9], [40, 115,0.9]];
     var query = this.props.location.query || '{}';
     if (query && query.v) {
       var texts = query.v.split(' ');
       positions.forEach((p,i)=>{
 	if (texts[i]) {
-	  ctx.font = ((window.innerWidth / 30) * p[2]) + "px Arial";
+	  ctx.font = ((window.innerWidth / 30) * p[2] * 1.05) + "px Arial";
 	  if (texts[i].length > 2) {
-	    ctx.font = ((window.innerWidth / 30) * p[2]) + "px Arial";
+	    ctx.font = ((window.innerWidth / 30) * p[2] * 0.8) + "px Arial";
 	  }
 	  ctx.fillText(texts[i].split('').slice(0,7).join(''), p[0]/320*window.innerWidth, p[1]/320*window.innerWidth);
 	}
@@ -82,7 +82,7 @@ export class App extends React.Component {
   }
 
   download(e) {
-    if (navigator.userAgent.toUpperCase().indexOf('MESSENGER;FBAV') !== -1) {
+    if (navigator.userAgent.toUpperCase().indexOf('FBAV') !== -1) {
       e.preventDefault();
       alert('No download here :( open link in browser');
     }
@@ -97,7 +97,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" />
-	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={()=>{this.download()}}>DOWNLOAD</a>
+	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={(e)=>{this.download(e)}}>DOWNLOAD</a>
       </div>
     );
   }
