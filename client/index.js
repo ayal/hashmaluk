@@ -80,6 +80,12 @@ export class App extends React.Component {
     this.setState({rendering:true});
     this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
   }
+
+  download() {
+    if (navigator.userAgent.toLowerCase().indexOf('MESSENGER;FBAV') !== -1) {
+      alert('No download here :( open link in browser');
+    }
+  }
   
   render() {
     console.log('rendering app', this);
@@ -90,7 +96,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" />
-	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={()=>{alert(navigator.userAgent)}}>DOWNLOAD</a>
+	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={()=>{this.download()}}>DOWNLOAD</a>
       </div>
     );
   }
