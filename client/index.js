@@ -80,7 +80,7 @@ export class App extends React.Component {
   }
 
   getImage() {
-    window.open(this.state.data);
+    location.href = this.state.data;
   }
   
   render() {
