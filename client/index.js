@@ -69,7 +69,7 @@ export class App extends React.Component {
       <div className="app">
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	<canvas ref="canvas" />
-	<a download="hashmaluk.png" href={this.state.data} >download</a>
+	<a className="download" download="hashmaluk.png" href={this.state.data} >download</a>
       </div>
     );
   }
