@@ -51,7 +51,6 @@ export class App extends React.Component {
     ctx.font = (window.innerWidth / 30) + "px Arial";
     ctx.translate(20/320*window.innerWidth,-20/320*window.innerWidth)
     ctx.rotate(0.1);
-    ctx.direction = "rtl";
     
     var positions = [[255,130,1.6], [160+14, 150,1.3], [97+10, 135, 1.3], [40, 115,1.1]];
     var query = this.props.location.query || '{}';
@@ -124,7 +123,7 @@ export class App extends React.Component {
       <div className="app">
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
-	<canvas ref="canvas" />
+	<canvas ref="canvas" dir="rtl" />
 	<a ref="download" className="download" onClick={(e)=>{this.download(e)}}>IMAGE</a>
       </div>
     );
