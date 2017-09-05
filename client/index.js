@@ -58,7 +58,7 @@ export class App extends React.Component {
   }
 
   change(e) {
-    this.context.router.push({pathname: 'hashmaluk', query: {v:e.target.value}});
+    this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
   }
   
   render() {
