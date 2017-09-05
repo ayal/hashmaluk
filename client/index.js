@@ -68,10 +68,10 @@ export class App extends React.Component {
 	this.setState({data});
 	setTimeout(()=>{
 	  this.setState({rendering:false});
-	},500)
+	},700)
       }
       
-    },500);
+    },700);
   }
 
   change(e) {
