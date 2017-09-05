@@ -123,7 +123,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" />
-	<a ref="download" className="download" onClick={(e)=>{this.download(e)}}>D0WNL0AD</a>
+	<a ref="download" className="download" onClick={(e)=>{this.download(e)}}>DOWNLOAD</a>
       </div>
     );
   }
