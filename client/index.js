@@ -51,13 +51,13 @@ export class App extends React.Component {
     ctx.translate(20/320*window.innerWidth,-20/320*window.innerWidth)
     ctx.rotate(0.1);
     
-    var positions = [[255,130,1.25], [160+14, 150,1.1], [97+10, 135, 0.9], [40, 115,0.9]];
+    var positions = [[255,130,1.25], [160+14, 150,1.1], [97+10, 135, 1], [40, 115,0.9]];
     var query = this.props.location.query || '{}';
     if (query && query.v) {
       var texts = query.v.split(' ');
       positions.forEach((p,i)=>{
 	if (texts[i]) {
-	  ctx.font = ((window.innerWidth / 30) * p[2] * 1.05) + "px Arial";
+	  ctx.font = ((window.innerWidth / 30) * p[2] * 1.07) + "px Arial";
 	  if (texts[i].length > 4) {
 	    ctx.font = ((window.innerWidth / 30) * p[2] * 0.8) + "px Arial";
 	  }
@@ -69,7 +69,7 @@ export class App extends React.Component {
     
     window.clearTimeout(this.toDataHandle);
     this.toDataHandle = setTimeout(()=>{
-      var data = this.refs.canvas.toDataURL('image/png').replace('image/png', 'application/octet-stream');
+      var data = this.refs.canvas.toDataURL('image/png');
       if (this.state.data !== data) {
 	this.setState({data});
 	setTimeout(()=>{
@@ -100,7 +100,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" />
-	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={(e)=>{this.download(e)}}>DOWNLOAD</a>
+	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={(e)=>{this.download(e)}}>D0WNL0AD</a>
       </div>
     );
   }
