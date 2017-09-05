@@ -16,7 +16,7 @@ export class App extends React.Component {
       console.log(this.image.naturalWidth, this.image.naturalHeight);
       this.updateCanvas();
     };
-    this.image.src = "hash.png";
+    this.image.src = "public/hash.png";
     
     this.updateCanvas();
   }
@@ -58,7 +58,7 @@ export class App extends React.Component {
   }
 
   change(e) {
-    this.context.router.push({query: {v:e.target.value}});
+    this.context.router.push({pathname: 'hashmaluk', query: {v:e.target.value}});
   }
   
   render() {
