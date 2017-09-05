@@ -51,7 +51,7 @@ export class App extends React.Component {
     ctx.translate(20/320*window.innerWidth,-20/320*window.innerWidth)
     ctx.rotate(0.1);
     
-    var positions = [[255,130,1.6], [160+14, 150,1.3], [97+10, 135, 1.3], [40, 115,1.3]];
+    var positions = [[255,130,1.6], [160+14, 150,1.3], [97+10, 135, 1.3], [40, 115,1.1]];
     var query = this.props.location.query || '{}';
     if (query && query.v) {
       var texts = query.v.split(' ');
@@ -59,7 +59,7 @@ export class App extends React.Component {
 	if (texts[i]) {
 	  ctx.font = ((window.innerWidth / 30) * p[2] * 1.07) + "px Arial";
 	  if (texts[i].length > 5) {
-	    ctx.font = ((window.innerWidth / 30) * p[2] * 0.7) + "px Arial";
+	    ctx.font = ((window.innerWidth / 30) * p[2] * 0.8) + "px Arial";
 	  }
 	  ctx.fillText(texts[i].split('').slice(0,7).join(''), p[0]/320*window.innerWidth, p[1]/320*window.innerWidth);
 	}
@@ -74,6 +74,7 @@ export class App extends React.Component {
 	this.setState({data});
 	setTimeout(()=>{
 	  this.setState({rendering:false});
+	  this._download(this.state.data);
 	},100)
       }
     },100);
@@ -84,11 +85,33 @@ export class App extends React.Component {
     this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
   }
 
-  download(e) {
-    if (navigator.userAgent.toUpperCase().indexOf('FBAV') !== -1) {
-      e.preventDefault();
-      alert('No download here :( open link in browser');
+  _download(dataurl) {
+    var callback = (blob) => {
+      var a = this.refs.download;
+      var realData = URL.createObjectURL(blob);
+      a.href = realData;
+    };
+
+    var arr = dataurl.split(','),
+        bstr = arr[1] && atob(arr[1]), n = bstr && bstr.length, u8arr = n && new Uint8Array(n);
+
+    if (!bstr) {
+      return;
     }
+    
+    while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    callback(new Blob([u8arr], {type:'image/png'}));
+  }
+
+
+  download(e) {
+    /* if (navigator.userAgent.toUpperCase().indexOf('FBAV') !== -1) {
+     *   e.preventDefault();
+     *   alert('No download here :( open link in browser');
+     * }*/
   }
   
   render() {
@@ -100,7 +123,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" />
-	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={(e)=>{this.download(e)}}>D0WNL0AD</a>
+	<a ref="download" className="download" onClick={(e)=>{this.download(e)}}>D0WNL0AD</a>
       </div>
     );
   }
