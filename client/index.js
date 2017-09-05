@@ -16,7 +16,7 @@ export class App extends React.Component {
       console.log(this.image.naturalWidth, this.image.naturalHeight);
       this.updateCanvas();
     };
-    this.image.src = "/hash.png";
+    this.image.src = "hash.png";
     
     this.updateCanvas();
   }
