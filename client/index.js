@@ -78,10 +78,6 @@ export class App extends React.Component {
     this.setState({rendering:true});
     this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
   }
-
-  getImage() {
-    location.href = this.state.data;
-  }
   
   render() {
     console.log('rendering app', this);
@@ -92,7 +88,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	<img src={this.state.data} style={{display:!this.state.rendering?'block':'none'}} className="theimg" />
 	<canvas ref="canvas" style={{display:this.state.rendering?'block':'none'}} />
-	<div className="download" onClick={()=>this.getImage()}>DOWNLOAD</div>
+	<a download="hashmaluk.png" className="download" href={this.state.data}>IMAGE</a>
       </div>
     );
   }
