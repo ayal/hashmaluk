@@ -82,7 +82,7 @@ export class App extends React.Component {
   }
 
   download(e) {
-    if (navigator.userAgent.toLowerCase().indexOf('MESSENGER;FBAV') !== -1) {
+    if (navigator.userAgent.toUpperCase().indexOf('MESSENGER;FBAV') !== -1) {
       e.preventDefault();
       alert('No download here :( open link in browser');
     }
@@ -97,7 +97,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" />
-	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={()=>{this.download()}}>DOWNLOAD</a>
+	<a download="hashmaluk.png" className="download" href={this.state.data} onClick={()=>{this.download()}}>IMAGE</a>
       </div>
     );
   }
