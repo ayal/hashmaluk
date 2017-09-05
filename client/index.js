@@ -51,7 +51,7 @@ export class App extends React.Component {
     
     window.clearTimeout(this.toDataHandle);
     this.toDataHandle = setTimeout(()=>{
-      var thedata = this.refs.canvas.toDataURL('image/png');
+      var thedata = this.refs.canvas.toDataURL('image/png').replace('image/png', 'application/octet-stream');
       if (this.state.data !== thedata)
       this.setState({data:thedata});
     },100);
@@ -69,7 +69,7 @@ export class App extends React.Component {
       <div className="app">
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	<canvas ref="canvas" />
-	<a className="download" download="hashmaluk.png" href={this.state.data} target="_blank">DOWNLOAD</a>
+	<a className="download" download="hashmaluk.png" href={this.state.data} target="_blank">HASHMAL</a>
       </div>
     );
   }
