@@ -1,21 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router'
+var FileSaver = require('file-saver');
 
 var style = require('./style.scss');
-
 
 var config = {
   imagePath: "public/hash.png", 
 };
 
-
-/*
-var config = {
+/*var config = {
   imagePath: "hash.png"
-}
-*/
-
+}*/
 
 export class App extends React.Component {
   constructor(props){
@@ -91,29 +87,32 @@ export class App extends React.Component {
     this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
   }
 
-  _download(dataurl) {
-    var callback = (blob) => {
-      var a = this.refs.download;
-	var realData = URL.createObjectURL(blob);
-	a.href = realData;
-    };
+    _download(dataurl) {
+	var callback = (blob) => {
+	    this.setState({blob});
+	    var a = this.refs.download;
+	    var realData = URL.createObjectURL(blob);
+	    a.href = realData;
+	};
 
-    var arr = dataurl.split(','),
-        bstr = arr[1] && atob(arr[1]), n = bstr && bstr.length, u8arr = n && new Uint8Array(n);
+	var arr = dataurl.split(','),
+            bstr = arr[1] && atob(arr[1]), n = bstr && bstr.length, u8arr = n && new Uint8Array(n);
 
-    if (!bstr) {
-      return;
+	if (!bstr) {
+	    return;
+	}
+	
+	while(n--){
+	    u8arr[n] = bstr.charCodeAt(n);
+	}
+
+	callback(new Blob([u8arr], {type:'image/jpg'}));
     }
-    
-    while(n--){
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-
-    callback(new Blob([u8arr], {type:'image/jpg'}));
-  }
 
 
-  download(e) {
+    download(e) {
+	e.preventDefault();
+	FileSaver.saveAs(this.state.blob, "hashmaluk.jpg");
     /* if (navigator.userAgent.toUpperCase().indexOf('FBAV') !== -1) {
      *   e.preventDefault();
      *   alert('No download here :( open link in browser');
@@ -129,7 +128,7 @@ export class App extends React.Component {
 	<input onChange={(e)=>this.change(e)} value={query.v} />
 	{/*<img src={this.state.data} tyle={{display:!this.state.rendering?'block':'none'}} className="theimg" />*/}
 	<canvas ref="canvas" dir="rtl" />
-	<a download="hashmaluk.jpg" ref="download" className="download" onClick={(e)=>{this.download(e)}}>DOWNLOAD</a>
+	<a download="hashmaluk.jpg" ref="download" className="download" onClick={(e)=>{this.download(e)}}>D0WNL0AD</a>
       </div>
     );
   }
