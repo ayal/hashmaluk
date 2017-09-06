@@ -10,9 +10,9 @@ var config = {
 };
 
 
-/*var config = {
+var config = {
   imagePath: "hash.png"
-}*/
+}
 
 
 export class App extends React.Component {
