@@ -27,7 +27,7 @@ export class App extends React.Component {
     this.image.src = config.imagePath;
     
     this.updateCanvas();
-    $(window).resize(()=>{
+    $ && $(window).resize(()=>{
       this.updateCanvas();
     })
   }
@@ -53,15 +53,15 @@ export class App extends React.Component {
     ctx.translate(20*ratio2,-20*ratio2)
     ctx.rotate(0.1);
     
-    var positions = [[255,130,1.6], [160+14, 150,1.3], [97+10, 135, 1.3], [40, 115,1.1]];
+    var positions = [[255,130,1.8], [160+14, 150,1.4], [97+10, 135, 1.4], [40, 115,1.2]];
     var query = this.props.location.query || '{}';
     if (query && query.v) {
       var texts = query.v.split(' ');
       positions.forEach((p,i)=>{
 	if (texts[i]) {
 	  ctx.font = ((width / 30) * p[2] * 1.07) + "px Arial";
-	  if (texts[i].length > 5) {
-	    ctx.font = ((width / 30) * p[2] * 0.8) + "px Arial";
+	  if (texts[i].length > 4) {
+	    ctx.font = ((width / 30) * p[2] * 0.6) + "px Arial";
 	  }
 	  ctx.fillText(texts[i].split('').slice(0,7).join(''), p[0]*ratio2, p[1]*ratio2);
 	}
@@ -81,11 +81,12 @@ export class App extends React.Component {
       }
     },100);
   }
-
-  change(e) {
-    this.setState({rendering:true});
-    this.context.router.push({pathname: '/hashmaluk', query: {v:e.target.value}});
-  }
+    
+	change(e) {
+		this.setState({rendering:true});
+		var v = e.target.value.split(' ').map(x=>x.slice(0,7)).join(' ');
+		this.context.router.replace({pathname: '/hashmaluk', query: {v}});
+	}
 
     _download(dataurl) {
 	var callback = (blob) => {
